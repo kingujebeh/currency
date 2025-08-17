@@ -1,3 +1,5 @@
+// Get Data From Blockchain
+
 const getData = (req, res) => {
   res.send({
     AFR: 1,
