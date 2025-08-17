@@ -1,8 +1,8 @@
 const getData = (req, res) => {
   res.send({
     AFR: 0,
-    NGN: 5000,
-    USD: 3,
+    NGN: 6000,
+    USD: 4,
   });
 };
 
