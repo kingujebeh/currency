@@ -20,12 +20,24 @@ class SharedData extends EventEmitter {
                   hash: "0x0843853d9bfb38a980e4048599c1de70c4a571a2afae4121e273acef47575bf1",
                   currency: {
                     value: 0,
+                    amount: 15000,
                   },
                 },
                 {
                   hash: "0x2591d8410bb78e0deb359609ec62c2b5da9988449e1a12476c6f238911e7a49b",
                   currency: {
                     value: 0,
+                    amount: 250000,
+                  },
+                },
+                {
+                  hash: "0xc9f1ba339a163d846614e1064d76d1fb8d619d80a019e95d46e5e26c41a7a1f2",
+                  currency: {
+                    name: "Naira",
+                    type: "fiat",
+                    token: "NGN",
+                    amount: 250,
+                    value: 150000,
                   },
                 },
               ],
@@ -34,15 +46,6 @@ class SharedData extends EventEmitter {
               name: "King",
               address: "0x88f0d4f0e3bc2b7a00a98a20eeda77f9879e7763",
               transactions: [
-                {
-                  hash: "0xc9f1ba339a163d846614e1064d76d1fb8d619d80a019e95d46e5e26c41a7a1f2",
-                  currency: {
-                    name: "Naira",
-                    type: "fiat",
-                    token: "NGN",
-                    value: 150000,
-                  },
-                },
                 {
                   hash: "0x928005fc90a9e2b516108350a8050bc363711e30c6ae86597dd1ae69ec4491b",
                   currency: {
@@ -67,6 +70,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 1000,
                     value: 997500,
                   },
                 },
@@ -76,6 +80,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 300,
                     value: 500000,
                   },
                 },
@@ -85,6 +90,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 250,
                     value: 25000,
                   },
                 },
@@ -94,6 +100,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 130,
                     value: 130000,
                   },
                 },
@@ -103,6 +110,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 7.11,
                     value: 15000,
                   },
                 },
@@ -112,6 +120,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 10,
                     value: 6600,
                   },
                 },
@@ -121,6 +130,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 12.391,
                     value: 7000,
                   },
                 },
@@ -130,6 +140,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 4.67,
                     value: 15000,
                   },
                 },
@@ -139,6 +150,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 4.412740544127405,
                     value: 15000,
                   },
                 },
@@ -148,6 +160,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 98.05,
                     value: 100000,
                   },
                 },
@@ -157,6 +170,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 4.4303797468354436,
                     value: 10000,
                   },
                 },
@@ -166,6 +180,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 0.001222161120785891,
                     value: 3,
                   },
                 },
@@ -175,6 +190,7 @@ class SharedData extends EventEmitter {
                     name: "Dollar",
                     type: "crypto",
                     token: "USDT",
+                    amount: 1,
                     value: 0.665,
                   },
                 },
@@ -184,6 +200,7 @@ class SharedData extends EventEmitter {
                     name: "Dollar",
                     type: "crypto",
                     token: "USDT",
+                    amount: 1,
                     value: 0.6651,
                   },
                 },
@@ -193,6 +210,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 10000,
                     value: 1000,
                   },
                 },
@@ -202,6 +220,7 @@ class SharedData extends EventEmitter {
                     name: "Naira",
                     type: "fiat",
                     token: "NGN",
+                    amount: 3700,
                     value: 50000,
                   },
                 },
@@ -239,6 +258,8 @@ class SharedData extends EventEmitter {
         price: 0,
       },
     ];
+
+    this.currency = {};
   }
 
   setPrice(type, token, amount) {
@@ -248,6 +269,10 @@ class SharedData extends EventEmitter {
 
   getCurrency(token) {
     return this.currencies.find((currency) => currency.token === token);
+  }
+
+  setCurrency(token, currency) {
+    this.currency[token] = currency;
   }
 }
 

@@ -8,6 +8,11 @@ const updateData = async () => {
   for (const [key, money] of Object.entries(data).filter(
     ([key]) => !key.startsWith("_")
   )) {
+    if (!Array.isArray(money)) {
+      // 👇 skip if it's not an array
+      continue;
+    }
+    
     money.forEach(async (info) => {
       data.setPrice(key, info.token, 1);
     });
@@ -55,30 +60,32 @@ function calculateValue(crypto, transactions) {
     // Flatten all royal transactions into one array
     const royalTx = royals.flatMap((royal) => royal.transactions);
 
-    let currency = {};
+    const currency = {};
 
     for (const tx of royalTx) {
-      if (!tx.currency) continue; // skip if tx has no currency field
+      if (!tx.currency) continue; // skip if no currency
 
-      const { type, token, value } = tx.currency;
+      const { type, token, value, amount } = tx.currency;
 
-      // initialize object for this type if not created yet
+      if (!type || !token) continue; // safety check
+
+      // initialize type container
       if (!currency[type]) {
         currency[type] = {};
       }
 
-      // add or accumulate token value
+      // initialize token entry
       if (!currency[type][token]) {
-        currency[type][token] = 0;
+        currency[type][token] = { token, value: 0, amount: 0 };
       }
 
-      currency[type][token] += value;
+      // accumulate into both fields
+      currency[type][token].value += value || 0;
+      currency[type][token].amount += amount || 0;
     }
 
-    delete currency.undefined;
-
-    console.log(currency);
-    return currency;
+    console.log(crypto.token, currency);
+    data.setCurrency(crypto.token, currency);
   }
 }
 

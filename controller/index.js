@@ -1,9 +1,7 @@
+const data = require("../data");
+
 const getData = (req, res) => {
-  res.send({
-    AFR: 1,
-    NGN: 20,
-    USD: 0.665,
-  });
+  res.send(data.currency);
 };
 
 module.exports = { getData };
