@@ -1,9 +1,9 @@
 const data = require("../data");
-const { updateData } = require("../func");
+const { updateData, calculateAllCryptoTransactions } = require("../func");
 
 const init = async () => {
   await updateData();
-  console.log(data);
+  await calculateAllCryptoTransactions();
 };
 
 module.exports = { init };
