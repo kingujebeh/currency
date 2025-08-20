@@ -264,7 +264,7 @@ class SharedData extends EventEmitter {
 
   setPrice(type, token, amount) {
     this[type].find((currency) => currency.token === token).price = amount;
-    this.emit("update", { token, amount }); // notify listeners
+    this.emit("update", { token, amount  }); // notify listeners
   }
 
   getCurrency(token) {

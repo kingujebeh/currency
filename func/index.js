@@ -12,7 +12,7 @@ const updateData = async () => {
       // 👇 skip if it's not an array
       continue;
     }
-    
+
     money.forEach(async (info) => {
       data.setPrice(key, info.token, 1);
     });
@@ -82,6 +82,8 @@ function calculateValue(crypto, transactions) {
       // accumulate into both fields
       currency[type][token].value += value || 0;
       currency[type][token].amount += amount || 0;
+      currency[type][token].price =
+        currency[type][token].value / currency[type][token].amount;
     }
 
     console.log(crypto.token, currency);
